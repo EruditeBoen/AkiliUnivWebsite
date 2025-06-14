@@ -14,7 +14,7 @@ const projects = [
 		id: 1,
 		title: "Georgia Tech",
 		description: "",
-		image: "/projects/GT.png",
+		image: "${base}projects/GT.png",
 		tags: [],
 		demoUrl: "https://www.gatech.edu/",
 	},
