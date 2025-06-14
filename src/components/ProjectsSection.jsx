@@ -14,7 +14,7 @@ const projects = [
 		id: 1,
 		title: "Georgia Tech",
 		description: "",
-		image: "/public/projects/GT.png",
+		image: "/AkiliUnivWebsite/public/projects/GT.png",
 		tags: [],
 		demoUrl: "https://www.gatech.edu/",
 	},
