@@ -8,7 +8,7 @@ const skills = [
   { name: "Linear Algebra", level: 100, category: "Math" },
   { name: "Calculus", level: 100, category: "Math" },
   { name: "Proofs & Logic", level: 100, category: "Math" },
-  //{ name: "Next.js", level: 80, category: "frontend" },
+  { name: "Probability & Statistics", level: 100, category: "Math" },
 
   // Science:
   { name: "Computer Science", level: 100, category: "Science" },
@@ -22,9 +22,9 @@ const skills = [
   { name: "Economics", level: 100, category: "Humanities" },
   { name: "Philosophy", level: 100, category: "Humanities" },
   { name: "History", level: 100, category: "Humanities" },
-  { name: "Law", level: 100, category: "Humanities" },
+  { name: "US Law", level: 100, category: "Humanities" },
   { name: "Writing", level: 100, category: "Humanities" },
-  { name: "Advanced Writing", level: 100, category: "Humanities" },
+  { name: "Digital Art", level: 100, category: "Humanities" },
 ];
 
 const categories = ["all", "Math", "Science", "Humanities"];
