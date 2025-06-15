@@ -17,19 +17,31 @@ export const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    const handleSubmit = (e) => {
+      e.preventDefault();
 
-    setIsSubmitting(true);
+      const token = grecaptcha.getResponse();
+      if (!token) {
+        toast({
+          title: "reCAPTCHA Required",
+          description: "Please verify you're not a robot before submitting.",
+        });
+        return;
+      }
 
-    setTimeout(() => {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. We will get back to you soon.",
-      });
-      setIsSubmitting(false);
-    }, 1500);
-  };
+      setIsSubmitting(true);
+
+      setTimeout(() => {
+        // Normally you’d POST to a backend API with `token` here
+        toast({
+          title: "Message sent!",
+          description: "Thank you for your message. We will get back to you soon.",
+        });
+        grecaptcha.reset(); // Reset checkbox
+        setIsSubmitting(false);
+      }, 1500);
+    };
+
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
@@ -157,6 +169,8 @@ export const ContactSection = () => {
                   placeholder="Message..."
                 />
               </div>
+
+              <div className="g-recaptcha" data-sitekey="6LcN-mErAAAAAIxrrmtXaJpdWlMLQmfIhW_zXeVl"></div>
 
               <button
                 type="submit"
