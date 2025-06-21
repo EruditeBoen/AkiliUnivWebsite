@@ -18,10 +18,10 @@ export const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleSubmit = (e) => {
-      e.preventDefault();
 
       const token = grecaptcha.getResponse();
       if (!token) {
+        e.preventDefault();
         toast({
           title: "reCAPTCHA Required",
           description: "Please verify you're not a robot before submitting.",
