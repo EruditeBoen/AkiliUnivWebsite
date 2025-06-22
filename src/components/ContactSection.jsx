@@ -118,7 +118,7 @@ export const ContactSection = () => {
               {/* Hidden FormSubmit inputs */}
               <input type="hidden" name="_captcha" value="false" />
               <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_next" value="https://akiliuniverse.org/thank-you.html" />
+              <input type="hidden" name="_next" value="" />
 
               {/* Name */}
               <div>
