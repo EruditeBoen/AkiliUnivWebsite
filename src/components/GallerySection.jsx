@@ -19,7 +19,7 @@ const galleryItems = [
   { type: "image", src: "/gallery/img8.jpg" },
   { type: "image", src: "/gallery/img9.jpg" },
   { type: "image", src: "/gallery/img10.jpg" },
-  { type: "image", src: "/gallery/img11.png" },
+  { type: "image", src: "/gallery/img11.jpg" },
   { type: "video", src: "/gallery/StudentSuccess.mp4", thumbnail: "/gallery/img12.png" },
 ];
 
