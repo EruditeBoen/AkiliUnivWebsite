@@ -1,89 +1,66 @@
-import { useState } from "react";
-import { cn } from "@/lib/utils";
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, A11y } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
-const skills = [
-  // Math:
-  { name: "Algebra", level: 100, category: "Math" },
-  { name: "Geometry", level: 100, category: "Math" },
-  { name: "Linear Algebra", level: 100, category: "Math" },
-  { name: "Calculus", level: 100, category: "Math" },
-  { name: "Proofs & Logic", level: 100, category: "Math" },
-  { name: "Probability & Statistics", level: 100, category: "Math" },
-
-  // Science:
-  { name: "Computer Science", level: 100, category: "Science" },
-  { name: "Electrical Engineering", level: 100, category: "Science" },
-  { name: "Mechanical Engineering", level: 100, category: "Science" },
-  { name: "Physics", level: 100, category: "Science" },
-  { name: "Chemistry", level: 100, category: "Science" },
-  { name: "Biology", level: 100, category: "Science" },
-
-  // Humanities
-  { name: "Economics", level: 100, category: "Humanities" },
-  { name: "Philosophy", level: 100, category: "Humanities" },
-  { name: "History", level: 100, category: "Humanities" },
-  { name: "US Law", level: 100, category: "Humanities" },
-  { name: "Writing", level: 100, category: "Humanities" },
-  { name: "Digital Art", level: 100, category: "Humanities" },
+const imageGroups = [
+  // First 18 images
+  [
+    "/gallery/img1.jpg", "/gallery/img2.jpg", "/gallery/img3.jpg",
+    "/gallery/img4.jpg", "/gallery/img5.jpg", "/gallery/img6.jpg",
+    "/gallery/img7.jpg", "/gallery/img8.jpg", "/gallery/img9.jpg",
+    "/gallery/img10.jpg", "/gallery/img11.jpg", "/gallery/img12.jpg",
+    "/gallery/img13.jpg", "/gallery/img14.jpg", "/gallery/img15.jpg",
+    "/gallery/img16.jpg", "/gallery/img17.jpg", "/gallery/img18.jpg",
+  ],
+  // Second 18 images
+  [
+    "/gallery/img19.jpg", "/gallery/img20.jpg", "/gallery/img21.jpg",
+    "/gallery/img22.jpg", "/gallery/img23.jpg", "/gallery/img24.jpg",
+    "/gallery/img25.jpg", "/gallery/img26.jpg", "/gallery/img27.jpg",
+    "/gallery/img28.jpg", "/gallery/img29.jpg", "/gallery/img30.jpg",
+    "/gallery/img31.jpg", "/gallery/img32.jpg", "/gallery/img33.jpg",
+    "/gallery/img34.jpg", "/gallery/img35.jpg", "/gallery/img36.jpg",
+  ],
 ];
 
-const categories = ["all", "Math", "Science", "Humanities"];
-
 export const GallerySection = () => {
-  const [activeCategory, setActiveCategory] = useState("all");
-
-  const filteredSkills = skills.filter(
-    (skill) => activeCategory === "all" || skill.category === activeCategory
-  );
   return (
-    <section id="gallery" className="py-24 px-4 relative bg-secondary/30">
-      <div className="container mx-auto max-w-5xl">
+    <section id="gallery" className="py-24 px-4 relative">
+      <div className="container mx-auto max-w-7xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          Curriculum  <span className="text-primary"> Preview  </span>
+          Gallery <span className="text-primary">Preview</span>
         </h2>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category, key) => (
-            <button
-              key={key}
-              onClick={() => setActiveCategory(category)}
-              className={cn(
-                "px-5 py-2 rounded-full transition-colors duration-300 capitalize",
-                activeCategory === category
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary/70 text-forefround hover:bd-secondary"
-              )}
-            >
-              {category}
-            </button>
+        <Swiper
+          modules={[Navigation, Pagination, A11y]}
+          navigation
+          pagination={{ clickable: true }}
+          spaceBetween={30}
+        >
+          {imageGroups.map((group, index) => (
+            <SwiperSlide key={index}>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                {group.map((src, i) => (
+                  <div
+                    key={i}
+                    className="overflow-hidden rounded-lg shadow bg-card"
+                  >
+                    <img
+                      src={src}
+                      alt={`Gallery Image ${i + 1}`}
+                      className="w-full h-32 object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                ))}
+              </div>
+            </SwiperSlide>
           ))}
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredSkills.map((skill, key) => (
-            <div
-              key={key}
-              className="bg-card p-6 rounded-lg shadow-xs card-hover"
-            >
-              <div className="text-left mb-4">
-                <h3 className="font-semibold text-lg"> {skill.name}</h3>
-              </div>
-              <div className="w-full bg-secondary/50 h-2 rounded-full overflow-hidden">
-                <div
-                  className="bg-primary h-2 rounded-full origin-left animate-[grow_1.5s_ease-out]"
-                  style={{ width: skill.level + "%" }}
-                />
-              </div>
-
-              <div className="text-right mt-1">
-                <span className="text-sm text-muted-foreground">
-                  {skill.level}%
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+        </Swiper>
       </div>
     </section>
   );
 };
+
