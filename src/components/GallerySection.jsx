@@ -6,8 +6,24 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const imageGroups = [
-  ["/gallery/img1.jpg", "/gallery/img2.jpg", /* ... up to 18 */],
-  ["/gallery/img19.jpg", "/gallery/img20.jpg", /* ... */],
+  // First 18 images
+  [
+    "/gallery/img1.jpg", "/gallery/img2.jpg", "/gallery/img3.jpg",
+    "/gallery/img4.jpg", "/gallery/img5.jpg", "/gallery/img6.jpg",
+    "/gallery/img7.jpg", "/gallery/img8.jpg", "/gallery/img9.jpg",
+    "/gallery/img10.jpg", "/gallery/img11.jpg", "/gallery/img12.jpg",
+    "/gallery/img13.jpg", "/gallery/img14.jpg", "/gallery/img15.jpg",
+    "/gallery/img16.jpg", "/gallery/img17.jpg", "/gallery/img18.jpg",
+  ],
+  // Second 18 images
+  [
+    "/gallery/img19.jpg", "/gallery/img20.jpg", "/gallery/img21.jpg",
+    "/gallery/img22.jpg", "/gallery/img23.jpg", "/gallery/img24.jpg",
+    "/gallery/img25.jpg", "/gallery/img26.jpg", "/gallery/img27.jpg",
+    "/gallery/img28.jpg", "/gallery/img29.jpg", "/gallery/img30.jpg",
+    "/gallery/img31.jpg", "/gallery/img32.jpg", "/gallery/img33.jpg",
+    "/gallery/img34.jpg", "/gallery/img35.jpg", "/gallery/img36.jpg",
+  ],
 ];
 
 export const GallerySection = () => {
