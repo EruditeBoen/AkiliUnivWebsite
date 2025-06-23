@@ -20,8 +20,7 @@ const galleryItems = [
   { type: "image", src: "/gallery/img9.jpg" },
   { type: "image", src: "/gallery/img10.jpg" },
   { type: "image", src: "/gallery/img11.png" },
-  { type: "video", src: "/gallery/StudentSuccess.mp4", thumbnail: "/gallery/img11.png" },
-  // Add more items here...
+  { type: "video", src: "/gallery/StudentSuccess.mp4", thumbnail: "/gallery/img12.png" },
 ];
 
 export const GallerySection = () => {
