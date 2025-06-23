@@ -1,89 +1,112 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useState, useRef } from "react";
+import { LightboxModal } from "./LightboxModal";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, A11y } from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 
-const imageGroups = [
-  // First 18 images
-  [
-    "/gallery/img1.jpg", "/gallery/img2.jpg", "/gallery/img3.jpg",
-    "/gallery/img4.jpg", "/gallery/img5.jpg", "/gallery/img6.jpg",
-    "/gallery/img7.jpg", "/gallery/img8.jpg", "/gallery/img9.jpg",
-    "/gallery/img10.jpg", "/gallery/img12.png",
-  ],
+const galleryItems = [
+  // Replace with your actual image/video file paths in /public/gallery
+  { type: "image", src: "/gallery/img1.jpg" },
+  { type: "image", src: "/gallery/img2.jpg" },
+  { type: "image", src: "/gallery/img3.jpg" },
+  { type: "image", src: "/gallery/img4.jpg" },
+  { type: "image", src: "/gallery/img5.jpg" },
+  { type: "image", src: "/gallery/img6.jpg" },
+  { type: "image", src: "/gallery/img7.jpg" },
+  { type: "image", src: "/gallery/img8.jpg" },
+  { type: "image", src: "/gallery/img9.jpg" },
+  { type: "image", src: "/gallery/img10.jpg" },
+  { type: "image", src: "/gallery/img11.png" },
+  { type: "video", src: "/gallery/StudentSuccess.mp4", thumbnail: "/gallery/img11.png" },
+  // Add more items here...
 ];
 
 export const GallerySection = () => {
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
-  const [swiperReady, setSwiperReady] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState({ type: "image", src: "" });
+  const swiperRef = useRef(null);
 
-  useEffect(() => {
-    // Trigger re-render after refs are set
-    setSwiperReady(true);
-  }, []);
+  const handleOpenModal = (type, src) => {
+    setModalContent({ type, src });
+    setModalOpen(true);
+  };
+
+  const handlePrev = () => {
+    swiperRef.current?.swiper?.slidePrev();
+  };
+
+  const handleNext = () => {
+    swiperRef.current?.swiper?.slideNext();
+  };
 
   return (
     <section id="gallery" className="py-24 px-4 relative">
-      <div className="container mx-auto max-w-7xl relative">
+      <div className="container mx-auto max-w-6xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          Gallery <span className="text-primary">Preview</span>
+          Image <span className="text-primary"> Gallery </span>
         </h2>
 
-        {/* Left Arrow */}
-        <button
-          ref={prevRef}
-          className="absolute left-[-2rem] top-1/2 transform -translate-y-1/2 z-20 bg-primary hover:bg-primary/80 text-white rounded-full w-10 h-10 flex items-center justify-center shadow"
-        >
-          <svg width="24" height="24" viewBox="0 0 25 25" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="15 18 9 12 15 6" />
-          </svg>
-        </button>
-
-        {swiperReady && (
-          <Swiper
-            modules={[Navigation, Pagination, A11y]}
-            spaceBetween={30}
-            pagination={{ clickable: true }}
-            navigation={{
-              prevEl: prevRef.current,
-              nextEl: nextRef.current,
-            }}
-            onBeforeInit={(swiper) => {
-              swiper.params.navigation.prevEl = prevRef.current;
-              swiper.params.navigation.nextEl = nextRef.current;
-            }}
+        <div className="relative flex items-center">
+          <button
+            onClick={handlePrev}
+            aria-label="Previous"
+            className="z-20 absolute left-0 top-1/2 -translate-y-1/2 bg-primary text-primary-foreground rounded-full w-10 h-10 flex items-center justify-center shadow hover:bg-primary/80 transition"
+            style={{ left: "-2.5rem" }}
           >
-            {imageGroups.map((group, index) => (
-              <SwiperSlide key={index}>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                  {group.map((src, i) => (
-                    <div key={i} className="overflow-hidden rounded-lg shadow bg-card">
-                      <img
-                        src={src}
-                        alt={`Gallery Image ${i + 1}`}
-                        className="w-full h-32 object-cover transition-transform duration-300 hover:scale-105"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        )}
+            <ChevronLeft size={24} />
+          </button>
 
-        {/* Right Arrow */}
-        <button
-          ref={nextRef}
-          className="absolute right-[-2rem] top-1/2 transform -translate-y-1/2 z-20 bg-primary hover:bg-primary/80 text-white rounded-full w-10 h-10 flex items-center justify-center shadow"
-        >
-          <svg width="24" height="24" viewBox="0 0 25 25" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="9 6 15 12 9 18" />
-          </svg>
-        </button>
+          <div className="w-full px-4">
+            <Swiper
+              ref={swiperRef}
+              modules={[Pagination, Navigation]}
+              spaceBetween={30}
+              slidesPerView={3}
+              breakpoints={{
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+              }}
+              pagination={{ clickable: true }}
+              navigation={false}
+              className="swiper-container"
+            >
+              {galleryItems.map((item, i) => (
+                <SwiperSlide key={i}>
+                  <div
+                    className="cursor-pointer overflow-hidden rounded-md shadow hover:shadow-lg transition-transform"
+                    onClick={() => handleOpenModal(item.type, item.src)}
+                  >
+                    <img
+                      src={item.thumbnail || item.src}
+                      alt="Gallery Item"
+                      className="w-full h-64 object-cover"
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+
+          <button
+            onClick={handleNext}
+            aria-label="Next"
+            className="z-20 absolute right-0 top-1/2 -translate-y-1/2 bg-primary text-primary-foreground rounded-full w-10 h-10 flex items-center justify-center shadow hover:bg-primary/80 transition"
+            style={{ right: "-2.5rem" }}
+          >
+            <ChevronRight size={24} />
+          </button>
+        </div>
+
+        <LightboxModal
+          open={modalOpen}
+          onClose={() => setModalOpen(false)}
+          content={modalContent}
+        />
       </div>
     </section>
   );
 };
+

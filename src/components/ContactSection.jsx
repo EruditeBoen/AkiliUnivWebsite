@@ -1,112 +1,184 @@
-import { useState, useRef } from "react";
-import { LightboxModal } from "./LightboxModal";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper/modules";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+  Twitch,
+  Twitter,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
-const galleryItems = [
-  // Replace with your actual image/video file paths in /public/gallery
-  { type: "image", src: "/gallery/img1.jpg" },
-  { type: "image", src: "/gallery/img2.jpg" },
-  { type: "image", src: "/gallery/img3.jpg" },
-  { type: "image", src: "/gallery/img4.jpg" },
-  { type: "image", src: "/gallery/img5.jpg" },
-  { type: "image", src: "/gallery/img6.jpg" },
-  { type: "image", src: "/gallery/img7.jpg" },
-  { type: "image", src: "/gallery/img8.jpg" },
-  { type: "image", src: "/gallery/img9.jpg" },
-  { type: "image", src: "/gallery/img10.jpg" },
-  { type: "image", src: "/gallery/img11.png" },
-  { type: "video", src: "/gallery/StudentSuccess.mp4", thumbnail: "/gallery/img11.png" },
-  // Add more items here...
-];
+export const ContactSection = () => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-export const GallerySection = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState({ type: "image", src: "" });
-  const swiperRef = useRef(null);
+    const handleSubmit = (e) => {
 
-  const handleOpenModal = (type, src) => {
-    setModalContent({ type, src });
-    setModalOpen(true);
-  };
+      const token = grecaptcha.getResponse();
+      if (!token) {
+        e.preventDefault();
+        toast({
+          title: "reCAPTCHA Required",
+          description: "Please verify you're not a robot before submitting.",
+        });
+        return;
+      }
 
-  const handlePrev = () => {
-    swiperRef.current?.swiper?.slidePrev();
-  };
+      setIsSubmitting(true);
 
-  const handleNext = () => {
-    swiperRef.current?.swiper?.slideNext();
-  };
+      setTimeout(() => {
+        // Normally you’d POST to a backend API with `token` here
+        toast({
+          title: "Message sent!",
+          description: "Thank you for your message. We will get back to you soon.",
+        });
+        grecaptcha.reset(); // Reset checkbox
+        setIsSubmitting(false);
+      }, 1500);
+    };
 
   return (
-    <section id="gallery" className="py-24 px-4 relative">
-      <div className="container mx-auto max-w-6xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          Image <span className="text-primary"> Gallery </span>
+      <section id="contact" className="py-24 px-4 relative bg-secondary/30">
+      <div className="container mx-auto max-w-5xl">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+          Contact <span className="text-primary"> Us</span>
         </h2>
 
-        <div className="relative flex items-center">
-          <button
-            onClick={handlePrev}
-            aria-label="Previous"
-            className="z-20 absolute left-0 top-1/2 -translate-y-1/2 bg-primary text-primary-foreground rounded-full w-10 h-10 flex items-center justify-center shadow hover:bg-primary/80 transition"
-            style={{ left: "-2.5rem" }}
-          >
-            <ChevronLeft size={24} />
-          </button>
-
-          <div className="w-full px-4">
-            <Swiper
-              ref={swiperRef}
-              modules={[Pagination, Navigation]}
-              spaceBetween={30}
-              slidesPerView={3}
-              breakpoints={{
-                640: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
-              }}
-              pagination={{ clickable: true }}
-              navigation={false}
-              className="swiper-container"
-            >
-              {galleryItems.map((item, i) => (
-                <SwiperSlide key={i}>
-                  <div
-                    className="cursor-pointer overflow-hidden rounded-md shadow hover:shadow-lg transition-transform"
-                    onClick={() => handleOpenModal(item.type, item.src)}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {/* CONTACT INFO */}
+          <div className="space-y-8">
+            <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
+            <div className="space-y-6 justify-center">
+              <div className="flex items-start space-x-4">
+                <div className="p-3 rounded-full bg-primary/10">
+                  <Mail className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-medium">Email</h4>
+                  <a
+                    href="mailto:admissions@akiliuniverse.org"
+                    className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    <img
-                      src={item.thumbnail || item.src}
-                      alt="Gallery Item"
-                      className="w-full h-64 object-cover"
-                    />
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                    admissions@akiliuniverse.org
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-start space-x-4">
+                <div className="p-3 rounded-full bg-primary/10">
+                  <Phone className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-medium">Phone</h4>
+                  <a
+                    href="tel:+16786536002"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    +1 (678) 653-6002
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-8">
+              <h4 className="font-medium mb-4">Social Media</h4>
+              <div className="flex space-x-4 justify-center">
+                <a
+                  href="https://www.facebook.com/AkiliUniverse/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Facebook />
+                </a>
+                <a
+                  href="https://www.instagram.com/akiliuniverse/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Instagram />
+                </a>
+              </div>
+            </div>
           </div>
 
-          <button
-            onClick={handleNext}
-            aria-label="Next"
-            className="z-20 absolute right-0 top-1/2 -translate-y-1/2 bg-primary text-primary-foreground rounded-full w-10 h-10 flex items-center justify-center shadow hover:bg-primary/80 transition"
-            style={{ right: "-2.5rem" }}
-          >
-            <ChevronRight size={24} />
-          </button>
-        </div>
+          {/* CONTACT FORM */}
+          <div className="bg-card p-8 rounded-lg shadow-xs">
+            <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
 
-        <LightboxModal
-          open={modalOpen}
-          onClose={() => setModalOpen(false)}
-          content={modalContent}
-        />
+            <form
+              className="space-y-6"
+              action="https://formsubmit.co/admissions@akiliuniverse.org"
+              method="POST"
+              onSubmit={handleSubmit}
+            >
+              {/* Hidden FormSubmit inputs */}
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_next" value="" />
+
+              {/* Name */}
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium mb-2">
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
+                  placeholder="Name..."
+                />
+              </div>
+
+              {/* Email */}
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  Your Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
+                  placeholder="email@gmail.com"
+                />
+              </div>
+
+              {/* Message */}
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                  Your Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary resize-none"
+                  placeholder="Message..."
+                />
+              </div>
+
+              {/* reCAPTCHA */}
+              <div className="g-recaptcha" data-sitekey="6LcN-mErAAAAAIxrrmtXaJpdWlMLQmfIhW_zXeVl"></div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={cn("cosmic-button w-full flex items-center justify-center gap-2")}
+              >
+                {isSubmitting ? "Sending..." : "Send Message"}
+                <Send size={16} />
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
   );
 };
-
