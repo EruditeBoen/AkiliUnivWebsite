@@ -12,7 +12,6 @@ const imageGroups = [
     "/gallery/img4.jpg", "/gallery/img5.jpg", "/gallery/img6.jpg",
     "/gallery/img7.jpg", "/gallery/img8.jpg", "/gallery/img9.jpg",
     "/gallery/img10.jpg", "/gallery/img11.jpg", "/gallery/img12.png",
-    "/gallery/img13.png", "/gallery/StudentSuccess.mp4",
   ],
 ];
 
