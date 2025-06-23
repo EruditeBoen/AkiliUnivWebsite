@@ -11,7 +11,7 @@ const imageGroups = [
     "/gallery/img1.jpg", "/gallery/img2.jpg", "/gallery/img3.jpg",
     "/gallery/img4.jpg", "/gallery/img5.jpg", "/gallery/img6.jpg",
     "/gallery/img7.jpg", "/gallery/img8.jpg", "/gallery/img9.jpg",
-    "/gallery/img10.jpg", "/gallery/img11.jpg", "/gallery/img12.png",
+    "/gallery/img10.jpg", "/gallery/img12.png",
   ],
 ];
 
