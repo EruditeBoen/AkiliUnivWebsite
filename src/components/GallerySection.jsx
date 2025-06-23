@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 
 const galleryItems = [
   // Replace with your actual image/video file paths in /public/gallery
+  { type: "video", src: "/gallery/AriTestimonial.mov", thumbnail: "/gallery/AriTestimonial.png" },
   { type: "image", src: "/gallery/img1.jpg" },
   { type: "image", src: "/gallery/img2.jpg" },
   { type: "image", src: "/gallery/img3.jpg" },
