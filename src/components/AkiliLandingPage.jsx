@@ -1,0 +1,251 @@
+import React from "react";
+
+export const AkiliLandingPage = () => {
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <main className="akili-home">
+      {/* Hero Section */}
+      <section className="hero">
+        <div className="hero-content">
+          <h1>Online K–12 Curriculum &amp; SAT Prep for Homeschoolers and Microschools</h1>
+          <p>
+            Akili Universe provides flexible, high-quality K–12 online learning, SAT prep, and tutoring
+            for homeschoolers, distant learners, and microschools in Atlanta and nationwide.
+            We combine rigorous academics with personalized support so students can grow in confidence,
+            curiosity, and real-world skills.
+          </p>
+          <div className="hero-cta">
+            <button
+              className="btn btn-primary"
+              type="button"
+              onClick={() => scrollToSection("contact")}
+            >
+              Schedule a Free Consultation
+            </button>
+            <button
+              className="btn btn-secondary"
+              type="button"
+              onClick={() => scrollToSection("programs")}
+            >
+              Explore Programs
+            </button>
+          </div>
+          <p className="hero-subtext">
+            Serving families in Atlanta, GA, across Georgia, and online anywhere in the U.S.
+          </p>
+        </div>
+      </section>
+
+      {/* Why Akili Universe */}
+      <section className="why-akili" id="why">
+        <h2>Why Akili Universe?</h2>
+        <p>
+          Families choose Akili Universe when they want more than a one-size-fits-all education.
+          We bring together online curriculum, SAT prep, and individualized tutoring to support each
+          student’s unique pace, strengths, and goals.
+        </p>
+        <ul>
+          <li>
+            <strong>Flexible online curriculum:</strong> Works for homeschoolers, microschools, and distant learners.
+          </li>
+          <li>
+            <strong>Mastery-based learning:</strong> Students move forward when they truly understand, not just when the calendar says so.
+          </li>
+          <li>
+            <strong>STEM- and literacy-focused:</strong> Strong foundations in math, science, reading, and writing.
+          </li>
+          <li>
+            <strong>Live and self-paced options:</strong> Mix recorded lessons, independent work, and live check-ins.
+          </li>
+          <li>
+            <strong>Supportive mentors:</strong> Caring educators who know your child by name—not by ID number.
+          </li>
+        </ul>
+      </section>
+
+      {/* Programs Overview */}
+      <section className="programs" id="programs">
+        <h2>Programs at Akili Universe</h2>
+
+        {/* K–12 Online Curriculum */}
+        <article className="program-block" id="k12-curriculum">
+          <h3>Online K–12 Curriculum</h3>
+          <p>
+            Our online curriculum supports K–12 students through clear lessons, practice, and meaningful projects.
+            It works as a full-time option for homeschool families or as a supplement for traditional and virtual students.
+          </p>
+          <div className="grades-grid">
+            <div>
+              <h4>Elementary (K–5)</h4>
+              <ul>
+                <li>Foundations in reading, writing, and math</li>
+                <li>Hands-on science and curiosity-driven projects</li>
+                <li>Short, engaging lessons designed for younger learners</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Middle School (6–8)</h4>
+              <ul>
+                <li>Pre-algebra, algebra, and strong reading comprehension</li>
+                <li>Introduction to structured writing and research</li>
+                <li>Project-based learning to connect subjects to real life</li>
+              </ul>
+            </div>
+            <div>
+              <h4>High School (9–12)</h4>
+              <ul>
+                <li>College-prep math, science, and humanities</li>
+                <li>Guided writing for essays, lab reports, and research papers</li>
+                <li>Support for transcripts, credit planning, and graduation goals</li>
+              </ul>
+            </div>
+          </div>
+          <p>
+            Whether you are building a full Atlanta homeschool program or coordinating a Georgia microschool,
+            our K–12 online learning paths adapt to your schedule and your students.
+          </p>
+        </article>
+
+        {/* SAT & Test Prep */}
+        <article className="program-block" id="sat-prep">
+          <h3>SAT Prep &amp; Test Readiness</h3>
+          <p>
+            Our SAT prep program helps students raise scores with a blend of targeted instruction, practice,
+            and coaching. We focus on math, reading, writing, timing strategies, and confidence.
+          </p>
+          <ul>
+            <li>Diagnostic review to identify strengths and gaps</li>
+            <li>Custom study plan for each student</li>
+            <li>Lesson videos, practice sets, and live review sessions</li>
+            <li>Support for PSAT, SAT, and other standardized tests</li>
+          </ul>
+          <p>
+            Students can join remotely from anywhere in the U.S., with special support for learners in
+            Atlanta and surrounding Georgia communities.
+          </p>
+        </article>
+
+        {/* Tutoring & Educational Consulting */}
+        <article className="program-block" id="tutoring">
+          <h3>Tutoring &amp; Educational Consulting</h3>
+          <p>
+            In addition to online curriculum and SAT prep, we offer one-on-one and small-group tutoring in
+            core subjects, as well as educational consulting for families, co-ops, and microschools.
+          </p>
+          <ul>
+            <li>
+              <strong>Tutoring Atlanta &amp; online:</strong> Math, science, reading, writing, and study skills.
+            </li>
+            <li>
+              <strong>Educational consulting:</strong> Curriculum mapping, program design, and learning plans for families and Georgia microschools.
+            </li>
+            <li>
+              <strong>Parent coaching:</strong> Practical systems and routines to support learners at home.
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      {/* Homeschool & Microschool Support */}
+      <section className="homeschool" id="homeschool">
+        <h2>Support for Homeschoolers &amp; Microschools in Atlanta and Beyond</h2>
+        <p>
+          Akili Universe partners with homeschool families, learning pods, and microschools who want a
+          structured but flexible online curriculum. We help you choose courses, set up daily routines,
+          and track progress over time.
+        </p>
+        <ul>
+          <li>Customized yearly and semester plans</li>
+          <li>Progress reports and feedback on assignments</li>
+          <li>Optional live check-ins and office hours</li>
+          <li>Guidance on records, portfolios, and transcripts</li>
+        </ul>
+        <p>
+          Whether you are just starting your Atlanta homeschool journey or scaling a microschool,
+          we help you build something sustainable and student-centered.
+        </p>
+      </section>
+
+      {/* How It Works */}
+      <section className="how-it-works" id="how-it-works">
+        <h2>How Akili Universe Works</h2>
+        <ol>
+          <li>
+            <strong>Schedule a free call:</strong> Share your student’s grade level, goals, and current challenges.
+          </li>
+          <li>
+            <strong>Get a customized plan:</strong> We recommend online curriculum, SAT prep, and tutoring options
+            tailored to your family or microschool.
+          </li>
+          <li>
+            <strong>Start learning:</strong> Students log in, follow clear weekly steps, and meet with instructors as needed.
+          </li>
+          <li>
+            <strong>Review and adjust:</strong> We check in regularly, track progress, and adjust pacing or support
+            so your student keeps moving forward.
+          </li>
+        </ol>
+      </section>
+
+      {/* FAQs */}
+      <section className="faq" id="faq">
+        <h2>Frequently Asked Questions</h2>
+
+        <div className="faq-item">
+          <h3>Is Akili Universe only for Atlanta families?</h3>
+          <p>
+            No. While we love serving Atlanta homeschool and Georgia microschool communities, all of our
+            online curriculum, SAT prep, and tutoring options are available nationwide.
+          </p>
+        </div>
+
+        <div className="faq-item">
+          <h3>Can I use Akili Universe as a full curriculum for homeschooling?</h3>
+          <p>
+            Yes. Many families use our K–12 online learning paths as their primary curriculum, while others
+            use Akili Universe to fill gaps, support advanced learners, or add SAT prep and tutoring on top
+            of another program.
+          </p>
+        </div>
+
+        <div className="faq-item">
+          <h3>Do you offer live instruction or only self-paced courses?</h3>
+          <p>
+            We offer both. Students can work through self-paced lessons and also join live sessions or
+            one-on-one tutoring for deeper support and accountability.
+          </p>
+        </div>
+
+        <div className="faq-item">
+          <h3>How do we get started?</h3>
+          <p>
+            Click the button below to schedule a free consultation. We’ll talk through your needs and help
+            you decide which Akili Universe options are the best fit.
+          </p>
+        </div>
+      </section>
+
+      {/* Contact / CTA */}
+      <section className="contact" id="contact">
+        <h2>Ready to Explore Akili Universe?</h2>
+        <p>
+          Tell us about your learner, your homeschool or microschool, and your goals.
+          We’ll help you design a path that works.
+        </p>
+        <a href="/contact" className="btn btn-primary">
+          Schedule a Free Consultation
+        </a>
+        <p className="contact-note">
+          Prefer email? You can also reach us directly at{" "}
+          <a href="mailto:info@akiliuniverse.org">info@akiliuniverse.org</a>.
+        </p>
+      </section>
+    </main>
+  );
+};
