@@ -1,7 +1,12 @@
 import { Navbar } from "../components/Navbar";
 import { ThemeToggle } from "../components/ThemeToggle";
 import { StarBackground } from "@/components/StarBackground";
-import { AkiliLandingPage } from "../components/AkiliLandingPage";
+import { HeroSection } from "../components/HeroSection";
+import { AboutSection } from "../components/AboutSection";
+import { SkillsSection } from "../components/SkillsSection";
+import { ProjectsSection } from "../components/ProjectsSection";
+import { GallerySection } from "../components/GallerySection";
+import { ContactSection } from "../components/ContactSection";
 import { Footer } from "../components/Footer";
 
 export const Home = () => {
@@ -14,9 +19,15 @@ export const Home = () => {
 
       {/* Navbar */}
       <Navbar />
-
       {/* Main Content */}
-      <AkiliLandingPage />
+      <main>
+        <HeroSection />
+        <AboutSection />
+        <SkillsSection />
+        <ProjectsSection />
+        <GallerySection />
+        <ContactSection />
+      </main>
 
       {/* Footer */}
       <Footer />
