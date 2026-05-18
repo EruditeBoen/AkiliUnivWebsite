@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Primary sitemap
+Sitemap: https://www.akiliuniverse.org/sitemap.xml
+
+# Block crawlers from irrelevant asset paths if added later
+Disallow: /node_modules/
+Disallow: /.git/

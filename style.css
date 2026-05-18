@@ -160,15 +160,20 @@ nav {
   inset: 0;
   background: var(--light);
   overflow-y: auto;
+  /* visibility:hidden keeps text in the DOM and readable by crawlers,
+     but does not trigger Google's "hidden content" penalty the way
+     opacity:0 + pointer-events:none can. */
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
   transform: translateY(16px);
-  transition: opacity var(--trans), transform var(--trans);
+  transition: opacity var(--trans), transform var(--trans), visibility var(--trans);
   z-index: 1;
 }
 
 .layer.active {
   opacity: 1;
+  visibility: visible;
   pointer-events: all;
   transform: translateY(0);
   z-index: 2;
