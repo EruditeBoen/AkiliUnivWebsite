@@ -35,3 +35,27 @@ document.addEventListener('click', e => {
   const hash  = window.location.hash.replace('#', '');
   if (valid.includes(hash)) showLayer(hash);
 })();
+
+// ── reCAPTCHA form validation ─────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const form  = document.getElementById('contact-form');
+  const error = document.getElementById('captcha-error');
+  if (!form) return;
+
+  form.addEventListener('submit', e => {
+    // grecaptcha may not be loaded yet in rare cases — fail safe
+    const response = (typeof grecaptcha !== 'undefined') ? grecaptcha.getResponse() : '';
+
+    if (!response) {
+      // Block submission and show error
+      e.preventDefault();
+      error.classList.add('visible');
+
+      // Scroll error into view on mobile
+      error.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } else {
+      // CAPTCHA passed — hide error and allow submit
+      error.classList.remove('visible');
+    }
+  });
+});

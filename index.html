@@ -280,6 +280,8 @@
   </script>
 
   <link rel="stylesheet" href="style.css" />
+  <!-- Google reCAPTCHA v2 -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 
@@ -688,7 +690,7 @@
 
           <div class="contact-form">
             <h3>Send Us a Message</h3>
-            <form action="mailto:admissions@akiliuniverse.org" method="post" enctype="text/plain" novalidate>
+            <form id="contact-form" action="mailto:admissions@akiliuniverse.org" method="post" enctype="text/plain" novalidate>
               <div class="form-row">
                 <div class="form-group">
                   <label for="first-name">First Name</label>
@@ -719,6 +721,13 @@
                 <label for="message">Message</label>
                 <textarea id="message" name="message" placeholder="Tell us about your student or ask us anything…"></textarea>
               </div>
+
+              <!-- Google reCAPTCHA widget -->
+              <div class="captcha-wrap">
+                <div class="g-recaptcha" data-sitekey="6LejjPIsAAAAABLr5onqA6wLr17ByxZMl0xt5Z-W"></div>
+                <p class="captcha-error" id="captcha-error" aria-live="polite">Please complete the CAPTCHA before sending.</p>
+              </div>
+
               <button type="submit" class="btn-submit">Send Message</button>
             </form>
           </div>
