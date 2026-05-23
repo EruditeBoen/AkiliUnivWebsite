@@ -40,7 +40,7 @@ document.addEventListener('click', e => {
 if (new URLSearchParams(window.location.search).get('sent') === 'true') {
   document.addEventListener('DOMContentLoaded', () => {
     const msg = document.getElementById('form-success-msg');
-    if (msg) msg.classList.add('visible');
+    if (msg) { msg.removeAttribute('hidden'); msg.classList.add('visible'); }
     history.replaceState(null, '', '/#contact');
   });
 }
