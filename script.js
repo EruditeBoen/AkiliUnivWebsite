@@ -36,7 +36,16 @@ document.addEventListener('click', e => {
   if (valid.includes(hash)) showLayer(hash);
 })();
 
-// ── Contact form – reCAPTCHA gate before Web3Forms submission ────────────
+// ── Show success message after FormSubmit redirect ───────────────────────
+if (new URLSearchParams(window.location.search).get('sent') === 'true') {
+  document.addEventListener('DOMContentLoaded', () => {
+    const msg = document.getElementById('form-success-msg');
+    if (msg) msg.classList.add('visible');
+    history.replaceState(null, '', '/#contact');
+  });
+}
+
+// ── Contact form – reCAPTCHA gate before FormSubmit submission ────────────
 document.addEventListener('DOMContentLoaded', () => {
   const form       = document.getElementById('contact-form');
   const captchaErr = document.getElementById('captcha-error');

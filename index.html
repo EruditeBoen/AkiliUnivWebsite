@@ -692,7 +692,7 @@
             <h3>Send Us a Message</h3>
             <form id="contact-form" action="https://formsubmit.co/admissions@akiliuniverse.org" method="POST" novalidate>
               <input type="hidden" name="_subject" value="New Admissions Inquiry – Akili Universe" />
-              <input type="hidden" name="_next" value="https://www.akiliuniverse.org/#contact" />
+              <input type="hidden" name="_next" value="https://www.akiliuniverse.org/?sent=true#contact" />
               <input type="hidden" name="_captcha" value="false" />
               <div class="form-row">
                 <div class="form-group">
@@ -729,6 +729,7 @@
               <div class="captcha-wrap">
                 <div class="g-recaptcha" data-sitekey="6LejjPIsAAAAABLr5onqA6wLr17ByxZMl0xt5Z-W"></div>
                 <p class="captcha-error" id="captcha-error" aria-live="polite">Please complete the CAPTCHA before sending.</p>
+                <p class="form-success-msg" id="form-success-msg" aria-live="polite">Message sent! We'll be in touch soon.</p>
               </div>
 
               <button type="submit" class="btn-submit">Send Message</button>

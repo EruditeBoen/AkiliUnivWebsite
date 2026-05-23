@@ -744,6 +744,22 @@ nav {
   display: block;
 }
 
+.form-success-msg {
+  display: none;
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #1a7a3a;
+  padding: 0.4rem 0.7rem;
+  background: #eafaf1;
+  border-radius: var(--radius);
+  border-left: 3px solid #1a7a3a;
+}
+
+.form-success-msg.visible {
+  display: block;
+}
+
 .btn-submit {
   width: 100%;
   padding: 0.8rem;
