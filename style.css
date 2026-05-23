@@ -758,7 +758,16 @@ nav {
   letter-spacing: 0.04em;
 }
 
-.btn-submit:hover { background: var(--blue); }
+.btn-submit:hover  { background: var(--blue); }
+.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.form-success {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.1rem;
+  color: var(--gold);
+  font-weight: 600;
+}
 
 /* ── Responsive ──────────────────────────────────────── */
 @media (max-width: 768px) {
