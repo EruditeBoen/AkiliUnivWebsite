@@ -222,7 +222,6 @@ nav {
   justify-content: center;
   text-align: center;
   padding: 3rem 2rem 2rem;
-  min-height: calc(100vh - var(--nav-h));
 }
 
 .hero-eyebrow {
