@@ -36,50 +36,23 @@ document.addEventListener('click', e => {
   if (valid.includes(hash)) showLayer(hash);
 })();
 
-// ── Contact form – Web3Forms submission ──────────────────────────────────
+// ── Contact form – reCAPTCHA gate before Web3Forms submission ────────────
 document.addEventListener('DOMContentLoaded', () => {
-  const form      = document.getElementById('contact-form');
+  const form       = document.getElementById('contact-form');
   const captchaErr = document.getElementById('captcha-error');
   if (!form) return;
 
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-
+  form.addEventListener('submit', e => {
     const recaptchaResponse = (typeof grecaptcha !== 'undefined') ? grecaptcha.getResponse() : '';
 
     if (!recaptchaResponse) {
+      e.preventDefault();
       captchaErr.classList.add('visible');
       captchaErr.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       return;
     }
+
     captchaErr.classList.remove('visible');
-
-    const submitBtn = form.querySelector('.btn-submit');
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending…';
-
-    const data = Object.fromEntries(new FormData(form));
-    data['g-recaptcha-response'] = recaptchaResponse;
-
-    try {
-      const res  = await fetch('https://api.web3forms.com/submit', {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body:    JSON.stringify(data),
-      });
-      const json = await res.json();
-
-      if (json.success) {
-        form.innerHTML = '<p class="form-success">Thank you! We\'ll be in touch soon.</p>';
-      } else {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Send Message';
-        alert('Something went wrong. Please try again or email us directly at admissions@akiliuniverse.org.');
-      }
-    } catch {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Send Message';
-      alert('Network error. Please check your connection and try again.');
-    }
+    // reCAPTCHA passed — native form submit goes to Web3Forms
   });
 });
