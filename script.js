@@ -36,17 +36,15 @@ document.addEventListener('click', e => {
   if (valid.includes(hash)) showLayer(hash);
 })();
 
-// ── Show success message after FormSubmit redirect ───────────────────────
-if (new URLSearchParams(window.location.search).get('sent') === 'true') {
-  document.addEventListener('DOMContentLoaded', () => {
+// ── Contact form – reCAPTCHA gate + FormSubmit submission ────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // Show success message if returning from a successful FormSubmit redirect
+  if (sessionStorage.getItem('formSent') === 'true') {
+    sessionStorage.removeItem('formSent');
     const msg = document.getElementById('form-success-msg');
     if (msg) { msg.removeAttribute('hidden'); msg.classList.add('visible'); }
-    history.replaceState(null, '', '/#contact');
-  });
-}
+  }
 
-// ── Contact form – reCAPTCHA gate before FormSubmit submission ────────────
-document.addEventListener('DOMContentLoaded', () => {
   const form       = document.getElementById('contact-form');
   const captchaErr = document.getElementById('captcha-error');
   if (!form) return;
@@ -62,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     captchaErr.classList.remove('visible');
-    // reCAPTCHA passed — native form submit goes to Web3Forms
+    sessionStorage.setItem('formSent', 'true');
+    // reCAPTCHA passed — native form submits to FormSubmit
   });
 });
